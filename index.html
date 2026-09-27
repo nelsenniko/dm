@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Diamond FF Anseng</title>
+
+<style>
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --bg: #070b16;
+  --card: #111827;
+  --card2: #172033;
+  --border: rgba(255,255,255,.08);
+
+  --white: #f8fafc;
+  --muted: #94a3b8;
+
+  --gold: #ffd700;
+  --gold2: #ffb700;
+
+  --green: #22c55e;
+  --green2: #16a34a;
+
+  --red: #ef4444;
+  --red2: #991b1b;
+
+  --blue: #38bdf8;
+  --purple: #a855f7;
+
+  --shadow: 0 15px 45px rgba(0,0,0,.35);
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(59,130,246,.13), transparent 35%),
+    radial-gradient(circle at bottom, rgba(168,85,247,.08), transparent 35%),
+    var(--bg);
+
+  color: var(--white);
+  padding: 18px 12px 30px;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  text-align: center;
+  margin-bottom: 18px;
+  animation: fadeDown .6s ease;
+}
+
+.header-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(135deg, #facc15, #f97316);
+
+  box-shadow:
+    0 0 30px rgba(250,204,21,.25);
+
+  font-size: 32px;
+
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.header h1 {
+  color: var(--gold);
+  font-size: clamp(23px, 6vw, 30px);
+  font-weight: 900;
+  letter-spacing: -.5px;
+}
+
+.header p {
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   TIMER DISKON
+========================================================= */
+
+.diskon-box {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(135deg, #7f1d1d, #991b1b 55%, #450a0a);
+
+  border: 1px solid rgba(248,113,113,.45);
+  border-radius: 20px;
+
+  padding: 17px;
+
+  margin-bottom: 18px;
+
+  text-align: center;
+
+  box-shadow:
+    0 12px 35px rgba(127,29,29,.25);
+
+  animation: fadeUp .7s ease;
+}
+
+.diskon-box::before {
+  content: "";
+
+  position: absolute;
+  width: 160px;
+  height: 160px;
+
+  background: rgba(255,255,255,.08);
+
+  border-radius: 50%;
+
+  top: -90px;
+  right: -60px;
+
+  animation: pulse 3s infinite;
+}
+
+.diskon-title {
+  position: relative;
+
+  color: #fde68a;
+
+  font-size: 18px;
+  font-weight: 900;
+
+  margin-bottom: 5px;
+}
+
+.diskon-date {
+  position: relative;
+
+  color: #fecaca;
+
+  font-size: 12px;
+
+  margin-bottom: 13px;
+}
+
+.timer {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 7px;
+}
+
+.timer-item {
+  background: rgba(0,0,0,.25);
+
+  border: 1px solid rgba(255,255,255,.06);
+
+  border-radius: 13px;
+
+  padding: 9px 4px;
+
+  backdrop-filter: blur(5px);
+}
+
+.timer-number {
+  display: block;
+
+  color: white;
+
+  font-size: clamp(19px, 5vw, 25px);
+
+  font-weight: 900;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-label {
+  display: block;
+
+  color: #fecaca;
+
+  font-size: 9px;
+
+  margin-top: 3px;
+
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   LABEL SECTION
+========================================================= */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 20px 2px 10px;
+
+  color: #cbd5e1;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  text-transform: uppercase;
+  letter-spacing: .7px;
+}
+
+
+/* =========================================================
+   PAKET
+========================================================= */
+
+.paket {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  background:
+    linear-gradient(145deg, rgba(30,41,59,.95), rgba(15,23,42,.95));
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  padding: 14px;
+
+  margin-bottom: 10px;
+
+  overflow: hidden;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+
+  animation: fadeUp .5s ease both;
+}
+
+.paket::before {
+  content: "";
+
+  position: absolute;
+
+  width: 4px;
+  height: 100%;
+
+  left: 0;
+  top: 0;
+
+  background: linear-gradient(
+    180deg,
+    #38bdf8,
+    #a855f7
+  );
+
+  opacity: .7;
+}
+
+.paket:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(255,215,0,.25);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   INFO PAKET
+========================================================= */
+
+.info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.harga {
+  color: white;
+
+  font-size: clamp(16px, 4.5vw, 19px);
+
+  font-weight: 900;
+}
+
+.dm-lama {
+  color: #64748b;
+
+  text-decoration: line-through;
+
+  font-size: 12px;
+}
+
+.bonus {
+  color: #4ade80;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   BONUS +10 SPESIAL
+========================================================= */
+
+.bonus-spesial {
+  position: relative;
+
+  width: fit-content;
+
+  color: #fde047;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(250,204,21,.08),
+      rgba(249,115,22,.18),
+      rgba(250,204,21,.08)
+    );
+
+  border: 1px solid rgba(250,204,21,.35);
+
+  border-radius: 7px;
+
+  padding: 3px 7px;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  box-shadow:
+    0 0 12px rgba(250,204,21,.15);
+
+  animation: bonusGlow 1.8s ease-in-out infinite;
+}
+
+.bonus-spesial::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -80%;
+
+  width: 45%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.45),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  animation: shine 2.5s infinite;
+}
+
+.total {
+  color: var(--gold);
+
+  font-size: 15px;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   BUTTON BELI
+========================================================= */
+
+.beli {
+  position: relative;
+
+  flex-shrink: 0;
+
+  min-width: 78px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 11px 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 18px rgba(34,197,94,.18);
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    filter .15s ease;
+
+  overflow: hidden;
+}
+
+.beli::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 100%;
+
+  background: rgba(255,255,255,.25);
+
+  transform: skewX(-20deg);
+
+  transition: .4s;
+}
+
+.beli:hover::after {
+  left: 130%;
+}
+
+.beli:hover {
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 10px 25px rgba(34,197,94,.3);
+
+  transform: translateY(-2px);
+}
+
+.beli:active {
+  transform: scale(.96);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(2,6,23,.78);
+
+  backdrop-filter: blur(7px);
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  z-index: 9999;
+}
+
+.modal.show {
+  display: flex;
+
+  animation: fadeIn .2s ease;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 420px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #172033,
+      #0f172a
+    );
+
+  border: 1px solid rgba(255,255,255,.1);
+
+  border-radius: 22px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.6);
+
+  animation: modalShow .25s ease;
+}
+
+.modal-title {
+  text-align: center;
+
+  color: var(--gold);
+
+  font-size: 20px;
+
+  font-weight: 900;
+
+  margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   DETAIL PESANAN
+========================================================= */
+
+.detail {
+  background:
+    linear-gradient(
+      135deg,
+      #172554,
+      #1e1b4b
+    );
+
+  border: 1px solid rgba(96,165,250,.15);
+
+  border-radius: 14px;
+
+  padding: 14px;
+
+  margin-bottom: 15px;
+
+  line-height: 1.8;
+
+  font-size: 14px;
+}
+
+.detail .special {
+  color: #fde047;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.id-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 13px;
+
+  color: #cbd5e1;
+
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+
+  padding: 14px;
+
+  background: #080d19;
+
+  color: white;
+
+  border: 1px solid #334155;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  font-size: 16px;
+
+  margin-bottom: 14px;
+
+  transition:
+    border-color .2s,
+    box-shadow .2s;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+input:focus {
+  border-color: var(--gold);
+
+  box-shadow:
+    0 0 0 3px rgba(255,215,0,.08);
+}
+
+
+/* =========================================================
+   MODAL BUTTONS
+========================================================= */
+
+.modal-buttons {
+  display: flex;
+
+  gap: 9px;
+}
+
+.batal,
+.wa {
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 13px;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition:
+    transform .15s,
+    filter .15s;
+}
+
+.batal {
+  flex: 1;
+
+  background: #334155;
+
+  color: white;
+}
+
+.wa {
+  flex: 1.5;
+
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
+
+  color: white;
+}
+
+.batal:hover,
+.wa:hover {
+  filter: brightness(1.08);
+
+  transform: translateY(-1px);
+}
+
+.batal:active,
+.wa:active {
+  transform: scale(.97);
+}
+
+.wa:disabled {
+  background: #334155;
+
+  color: #64748b;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  margin-top: 22px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: scale(.92) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes floatIcon {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%,100% {
+    transform: scale(1);
+    opacity: .5;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: .9;
+  }
+}
+
+@keyframes bonusGlow {
+  0%,100% {
+    box-shadow:
+      0 0 8px rgba(250,204,21,.1);
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px rgba(250,204,21,.35);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -80%;
+  }
+
+  45%,100% {
+    left: 130%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+  body {
+    padding: 14px 10px 25px;
+  }
+
+  .header {
+    margin-bottom: 15px;
+  }
+
+  .header-icon {
+    width: 58px;
+    height: 58px;
+
+    font-size: 28px;
+
+    border-radius: 18px;
+  }
+
+  .diskon-box {
+    padding: 14px 10px;
+
+    border-radius: 17px;
+  }
+
+  .timer {
+    gap: 5px;
+  }
+
+  .timer-item {
+    padding: 8px 2px;
+  }
+
+  .paket {
+    padding: 13px 11px;
+
+    border-radius: 16px;
+  }
+
+  .beli {
+    min-width: 70px;
+
+    padding: 10px 12px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-box {
+    padding: 17px;
+
+    border-radius: 20px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+========================================================= */
+
+@media (max-width: 340px) {
+
+  .paket {
+    align-items: flex-end;
+  }
+
+  .harga {
+    font-size: 15px;
+  }
+
+  .dm-lama,
+  .bonus,
+  .bonus-spesial,
+  .total {
+    font-size: 12px;
+  }
+
+  .beli {
+    min-width: 62px;
+
+    padding: 9px 10px;
+
+    font-size: 12px;
+  }
+
+  .timer-number {
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <div class="header-icon">
+      💎
+    </div>
+
+    <h1>DIAMOND FREE FIRE</h1>
+
+    <p>Anseng • Diamond + Bonus</p>
+
+  </div>
+
+
+  <!-- TIMER -->
+
+  <div class="diskon-box">
+
+    <div class="diskon-title">
+      🔥 DISKON TERBATAS
+    </div>
+
+    <div class="diskon-date" id="tanggalDiskon">
+      Diskon berakhir...
+    </div>
+
+    <div class="timer">
+
+      <div class="timer-item">
+        <span class="timer-number" id="hari">00</span>
+        <span class="timer-label">HARI</span>
+      </div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="jam">00</span>
+        <span class="timer-label">JAM</span>
+      </div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="menit">00</span>
+        <span class="timer-label">MENIT</span>
+      </div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="detik">00</span>
+        <span class="timer-label">DETIK</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- JUDUL -->
+
+  <div class="section-title">
+    💎 Pilih Paket Diamond
+  </div>
+
+
+  <!-- 5 RIBU -->
+
+  <div class="paket">
+
+    <div class="info">
+
+      <span class="harga">
+        💵 Rp5 Ribu
+      </span>
+
+      <span class="dm-lama">
+        💎 20 DM
+      </span>
+
+      <span class="bonus">
+        🎁 Bonus +5 DM
+      </span>
+
+      <span class="total">
+        ⭐ Total 25 DM
+      </span>
+
+    </div>
+
+    <button
+      class="beli"
+      onclick="bukaModal('Rp5 Ribu','20 DM','5 DM','25 DM')">
+
+      Beli
+
+    </button>
+
+  </div>
+
+
+  <!-- 10 RIBU -->
+
+  <div class="paket">
+
+    <div class="info">
+
+      <span class="harga">
+        💵 Rp10 Ribu
+      </span>
+
+      <span class="dm-lama">
+        💎 50 DM
+      </span>
+
+      <span class="bonus">
+        🎁 Bonus +5 DM
+      </span>
+
+      <span class="total">
+        ⭐ Total 55 DM
+      </span>
+
+    </div>
+
+    <button
+      class="beli"
+      onclick="bukaModal('Rp10 Ribu','50 DM','5 DM','55 DM')">
+
+      Beli
+
+    </button>
+
+  </div>
+
+
+  <!-- 15 RIBU -->
+
+  <div class="paket">
+
+    <div class="info">
+
+      <span class="harga">
+        💵 Rp15 Ribu
+      </span>
+
+      <span class="dm-lama">
+        💎 75 DM
+      </span>
+
+      <span class="bonus">
+        🎁 Bonus +5 DM
+      </span>
+
+      <span class="total">
+        ⭐ Total 80 DM
+      </span>
+
+    </div>
+
+    <button
+      class="beli"
+      onclick="bukaModal('Rp15 Ribu','75 DM','5 DM','80 DM')">
+
+      Beli
+
+    </button>
+
+  </div>
+
+
+  <!-- 20 RIBU -->
+
+  <div class="paket">
+
+    <div class="info">
+
+      <span class="harga">
+        💵 Rp20 Ribu
+      </span>
+
+      <span class="dm-lama">
+        💎 100 DM
+      </span>
+
+      <span class="bonus-spesial">
+        🎁 BONUS +10 DM
+      </span>
+
+      <span class="total">
+        ⭐ Total 110 DM
+      </span>
+
+    </div>
+
+    <button
+      class="beli"
+      onclick="bukaModal('Rp20 Ribu','100 DM','10 DM','110 DM')">
+
+      Beli
+
+    </button>
+
+  </div>
+
+
+  <!-- 25 RIBU -->
+
+  <div class="paket">
+
+    <div class="info">
+
+      <span class="harga">
+        💵 Rp25 Ribu
+      </span>
+
+      <span class="dm-lama">
+        💎 120 DM
+      </span>
+
+      <span class="bonus-spesial">
+        🎁 BONUS +10 DM
+      </span>
+
+      <span class="total">
+        ⭐ Total 130 DM
+      </span>
+
+    </div>
+
+    <button
+      class="beli"
+      onclick="bukaModal('Rp25 Ribu','120 DM','10 DM','130 DM')">
+
+      Beli
+
+    </button>
+
+  </div>
+
+
+  <!-- 30 RIBU -->
+
+  <div class="paket">
+
+    <div class="info">
+
+      <span class="harga">
+        💵 Rp30 Ribu
+      </span>
+
+      <span class="dm-lama">
+        💎 150 DM
+      </span>
+
+      <span class="bonus-spesial">
+        🎁 BONUS +10 DM
+      </span>
+
+      <span class="total">
+        ⭐ Total 160 DM
+      </span>
+
+    </div>
+
+    <button
+      class="beli"
+      onclick="bukaModal('Rp30 Ribu','150 DM','10 DM','160 DM')">
+
+      Beli
+
+    </button>
+
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+    📱 WhatsApp: 085328736706
+  </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     MODAL
+======================================================= -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-title">
+      🎮 Beli Diamond FF
+    </div>
+
+
+    <div class="detail" id="detailPesanan"></div>
+
+
+    <label class="id-label">
+      🆔 ID Free Fire
+    </label>
+
+
+    <input
+      type="text"
+      id="idFF"
+      placeholder="Masukkan ID Free Fire"
+      inputmode="numeric"
+      autocomplete="off"
+      oninput="cekID()"
+    >
+
+
+    <div class="modal-buttons">
+
+      <button
+        class="batal"
+        onclick="tutupModal()">
+
+        Batal
+
+      </button>
+
+
+      <button
+        class="wa"
+        id="btnWA"
+        onclick="beliWA()"
+        disabled>
+
+        📱 Beli via WA
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   TIMER DISKON
+
+   UBAH TANGGAL DI SINI
+   Contoh:
+   2026-09-28 = 1 hari
+   2026-09-29 = 2 hari
+========================================================= */
+
+const tanggalBerakhir =
+  new Date("2026-09-29T23:59:59+07:00");
+
+
+function updateTimer() {
+
+  const sekarang = new Date();
+
+  const selisih =
+    tanggalBerakhir - sekarang;
+
+
+  const tanggalText =
+    tanggalBerakhir.toLocaleDateString(
+      "id-ID",
+      {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      }
+    );
+
+
+  document.getElementById(
+    "tanggalDiskon"
+  ).textContent =
+    "Berakhir " + tanggalText;
+
+
+  if (selisih <= 0) {
+
+    document.getElementById("hari")
+      .textContent = "00";
+
+    document.getElementById("jam")
+      .textContent = "00";
+
+    document.getElementById("menit")
+      .textContent = "00";
+
+    document.getElementById("detik")
+      .textContent = "00";
+
+
+    document.querySelector(
+      ".diskon-title"
+    ).textContent =
+      "⏰ DISKON BERAKHIR";
+
+
+    document.getElementById(
+      "tanggalDiskon"
+    ).textContent =
+      "Promo telah berakhir";
+
+
+    return;
+  }
+
+
+  const totalDetik =
+    Math.floor(selisih / 1000);
+
+
+  const hari =
+    Math.floor(
+      totalDetik / 86400
+    );
+
+
+  const jam =
+    Math.floor(
+      (totalDetik % 86400) / 3600
+    );
+
+
+  const menit =
+    Math.floor(
+      (totalDetik % 3600) / 60
+    );
+
+
+  const detik =
+    totalDetik % 60;
+
+
+  document.getElementById("hari")
+    .textContent =
+    String(hari).padStart(2, "0");
+
+
+  document.getElementById("jam")
+    .textContent =
+    String(jam).padStart(2, "0");
+
+
+  document.getElementById("menit")
+    .textContent =
+    String(menit).padStart(2, "0");
+
+
+  document.getElementById("detik")
+    .textContent =
+    String(detik).padStart(2, "0");
+}
+
+
+updateTimer();
+
+setInterval(updateTimer, 1000);
+
+
+/* =========================================================
+   DATA PESANAN
+========================================================= */
+
+let pesanan = {};
+
+
+/* =========================================================
+   BUKA MODAL
+========================================================= */
+
+function bukaModal(
+  harga,
+  dm,
+  bonus,
+  total
+) {
+
+  pesanan = {
+    harga: harga,
+    dm: dm,
+    bonus: bonus,
+    total: total
+  };
+
+
+  const bonusClass =
+    bonus === "10 DM"
+      ? "special"
+      : "";
+
+
+  document.getElementById(
+    "detailPesanan"
+  ).innerHTML = `
+
+    💰 Harga:
+    <b>${harga}</b>
+
+    <br>
+
+    💎 Diamond:
+    <s>${dm}</s>
+
+    <br>
+
+    🎁 Bonus:
+    <b class="${bonusClass}">
+      +${bonus}
+    </b>
+
+    <br>
+
+    ⭐ Total:
+    <b>${total}</b>
+  `;
+
+
+  document.getElementById(
+    "idFF"
+  ).value = "";
+
+
+  document.getElementById(
+    "btnWA"
+  ).disabled = true;
+
+
+  document.getElementById(
+    "modal"
+  ).classList.add("show");
+
+
+  setTimeout(() => {
+
+    document.getElementById(
+      "idFF"
+    ).focus();
+
+  }, 200);
+}
+
+
+/* =========================================================
+   CEK ID FREE FIRE
+========================================================= */
+
+function cekID() {
+
+  const id =
+    document.getElementById(
+      "idFF"
+    ).value.trim();
+
+
+  document.getElementById(
+    "btnWA"
+  ).disabled =
+    id.length < 4;
+}
+
+
+/* =========================================================
+   BELI VIA WHATSAPP
+========================================================= */
+
+function beliWA() {
+
+  const idFF =
+    document.getElementById(
+      "idFF"
+    ).value.trim();
+
+
+  if (idFF.length < 4) {
+
+    alert(
+      "Masukkan ID Free Fire terlebih dahulu."
+    );
+
+    return;
+  }
+
+
+  const nomor =
+    "6285328736706";
+
+
+  const pesan =
+`Halo, saya mau beli Diamond FF 🎮
+
+💰 Harga: ${pesanan.harga}
+💎 Diamond: ${pesanan.dm}
+🎁 Bonus: +${pesanan.bonus}
+⭐ Total: ${pesanan.total}
+
+🆔 ID Free Fire: ${idFF}
+
+Mohon diproses.`;
+
+
+  const url =
+    "https://wa.me/" +
+    nomor +
+    "?text=" +
+    encodeURIComponent(pesan);
+
+
+  window.open(
+    url,
+    "_blank"
+  );
+}
+
+
+/* =========================================================
+   TUTUP MODAL
+========================================================= */
+
+function tutupModal() {
+
+  document.getElementById(
+    "modal"
+  ).classList.remove("show");
+
+
+  document.getElementById(
+    "idFF"
+  ).value = "";
+}
+
+
+/* =========================================================
+   KLIK AREA GELAP
+========================================================= */
+
+document.getElementById(
+  "modal"
+).addEventListener(
+  "click",
+  function(e) {
+
+    if (e.target === this) {
+      tutupModal();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(e) {
+
+    if (e.key === "Escape") {
+      tutupModal();
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
