@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e1a">
+<meta name="description" content="Nelsen Store — Layanan Digital Tercepat & Terpercaya. Voucher Listrik, Pulsa, Paket Data, Top Up Game, Tiket, BPJS, Cicilan, dan banyak lagi.">
+<title>Nelsen Store — Layanan Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg:#05070f;
+    --bg-1:#0a0e1a;
+    --surface:rgba(20,26,45,.65);
+    --surface-solid:#141a2d;
+    --surface-2:rgba(10,14,26,.5);
+    --border:rgba(124,58,237,.18);
+    --border-soft:rgba(255,255,255,.06);
+    --border-strong:rgba(255,255,255,.12);
+    --text:#f1f5ff;
+    --text-2:#c4b5fd;
+    --muted:#8b95b5;
+    --muted-2:#5a6488;
+    --accent:#7c3aed;
+    --accent-2:#a78bfa;
+    --accent-3:#c4b5fd;
+    --gold:#fbbf24;
+    --success:#10b981;
+    --danger:#ef4444;
+    --overlay:rgba(5,7,15,.85);
+    --shadow-sm:0 4px 12px -4px rgba(0,0,0,.5);
+    --shadow-md:0 10px 30px -12px rgba(0,0,0,.65);
+    --shadow-lg:0 20px 50px -20px rgba(0,0,0,.85);
+    --shadow-glow:0 12px 40px -12px rgba(124,58,237,.55);
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    margin:0 auto;
+    padding:20px 16px 40px;
+    max-width:560px;
+    line-height:1.55;
+    min-height:100vh;
+    min-height:100dvh;
+    padding-top:calc(20px + env(safe-area-inset-top));
+    padding-bottom:calc(40px + env(safe-area-inset-bottom));
+    padding-left:calc(16px + env(safe-area-inset-left));
+    padding-right:calc(16px + env(safe-area-inset-right));
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* === BACKGROUND GLOW === */
+  body::before,
+  body::after{
+    content:'';
+    position:fixed;
+    border-radius:50%;
+    filter:blur(90px);
+    pointer-events:none;
+    z-index:0;
+    opacity:.5;
+    will-change:transform;
+  }
+  body::before{
+    width:500px;height:500px;
+    background:radial-gradient(circle,#7c3aed,transparent 70%);
+    top:-200px;left:-150px;
+    animation:float1 20s ease-in-out infinite;
+  }
+  body::after{
+    width:450px;height:450px;
+    background:radial-gradient(circle,#06b6d4,transparent 70%);
+    bottom:-180px;right:-150px;
+    animation:float2 22s ease-in-out infinite;
+  }
+  @keyframes float1{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(80px,100px) scale(1.15)}
+  }
+  @keyframes float2{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(-80px,-70px) scale(1.1)}
+  }
+
+  /* Grid overlay */
+  body .grid-overlay{
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(124,58,237,.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(124,58,237,.03) 1px,transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;z-index:0;
+    -webkit-mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%);
+    mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%);
+  }
+
+  /* === HEADER === */
+  .header{
+    text-align:center;
+    margin-bottom:26px;
+    padding:26px 20px 22px;
+    background:linear-gradient(160deg,rgba(124,58,237,.16),rgba(20,26,45,.5));
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.06);
+    position:relative;
+    overflow:hidden;
+    -webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(20px);
+    z-index:1;
+    isolation:isolate;
+  }
+  .header::before{
+    content:'';
+    position:absolute;inset:0;
+    background:radial-gradient(600px 200px at 50% -20%,rgba(167,139,250,.45),transparent 70%);
+    pointer-events:none;
+  }
+  .header::after{
+    content:'';
+    position:absolute;top:0;left:-100%;
+    width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+    animation:shine 5s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes shine{
+    0%,100%{left:-100%}
+    50%{left:100%}
+  }
+
+  .logo-badge{
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    width:62px;height:62px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#7c3aed,#a78bfa,#c4b5fd);
+    background-size:200% 200%;
+    box-shadow:0 14px 38px -8px rgba(124,58,237,.7),inset 0 1px 0 rgba(255,255,255,.35);
+    margin-bottom:14px;
+    position:relative;z-index:1;
+    animation:pulse 3s ease-in-out infinite,gradientMove 6s ease infinite;
+  }
+  .logo-badge i{
+    font-size:27px;color:#fff;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,.4));
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+  }
+  @keyframes gradientMove{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+
+  .header h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(24px,6vw,30px);
+    font-weight:700;
+    margin:0 0 6px;
+    letter-spacing:-.6px;
+    line-height:1.15;
+    position:relative;z-index:1;
+    background:linear-gradient(135deg,#fff 20%,var(--accent-3) 80%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .header p{
+    color:var(--muted);
+    font-size:13px;
+    margin:0;
+    font-weight:500;
+    letter-spacing:.2px;
+    position:relative;z-index:1;
+  }
+  .header p .status-dot{
+    display:inline-block;
+    width:7px;height:7px;
+    border-radius:50%;
+    background:var(--success);
+    margin-right:6px;
+    box-shadow:0 0 8px var(--success);
+    animation:blink 2s ease-in-out infinite;
+    vertical-align:middle;
+  }
+  @keyframes blink{
+    0%,100%{opacity:1}
+    50%{opacity:.4}
+  }
+
+  /* === SECTION TITLE === */
+  .section-title{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:11.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.8px;
+    color:var(--muted);
+    margin-bottom:14px;
+    padding-left:4px;
+    position:relative;
+    z-index:1;
+  }
+  .section-title i{color:var(--accent-2);font-size:12px}
+  .section-title::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg,rgba(124,58,237,.4),transparent);
+  }
+
+  /* === GRID === */
+  #list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:24px;
+    position:relative;
+    z-index:1;
+  }
+  @media (min-width:420px){#list{gap:13px}}
+
+  /* === CARD === */
+  .card{
+    position:relative;
+    background:linear-gradient(160deg,rgba(20,26,45,.92),rgba(11,15,26,.88));
+    border:1.5px solid var(--border-soft);
+    border-radius:18px;
+    padding:20px 12px 18px;
+    cursor:pointer;
+    text-align:center;
+    user-select:none;
+    overflow:hidden;
+    isolation:isolate;
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+    transition:transform .3s cubic-bezier(.22,1,.36,1),
+               border-color .3s ease,
+               box-shadow .3s ease,
+               background .3s ease;
+    box-shadow:var(--shadow-sm);
+  }
+  .card::before{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(160deg,var(--_glow,rgba(124,58,237,.15)),transparent 65%);
+    opacity:0;
+    transition:opacity .3s ease;
+    pointer-events:none;
+    z-index:-1;
+  }
+  .card::after{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--_border,rgba(167,139,250,.5)),transparent);
+    opacity:.5;
+    transition:opacity .3s ease;
+  }
+  .card:hover{
+    transform:translateY(-5px);
+    border-color:var(--_border,rgba(167,139,250,.5));
+    box-shadow:0 22px 45px -18px var(--_shadow,rgba(124,58,237,.5)),
+               var(--shadow-md);
+    background:linear-gradient(160deg,rgba(24,31,52,.95),rgba(13,18,32,.92));
+  }
+  .card:hover::before{opacity:1}
+  .card:hover::after{opacity:1}
+  .card:active{transform:translateY(-2px) scale(.98)}
+  .card:focus-visible{
+    outline:2px solid var(--accent-2);
+    outline-offset:3px;
+  }
+
+  .card .card-icon{
+    display:block;
+    font-size:26px;
+    margin-bottom:11px;
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+    line-height:1;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,.4));
+  }
+  .card:hover .card-icon{transform:scale(1.18) rotate(-3deg)}
+
+  .card .card-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    margin-bottom:4px;
+    line-height:1.25;
+    letter-spacing:-.2px;
+    color:#fff;
+  }
+  .card .card-desc{
+    font-size:11px;
+    color:var(--muted);
+    line-height:1.35;
+    font-weight:500;
+  }
+
+  /* === CARD COLORS === */
+  .card[data-icon="voucher"]   {--_glow:rgba(251,191,36,.18);--_border:rgba(251,191,36,.55);--_shadow:rgba(251,191,36,.5)}
+  .card[data-icon="pulsa"]     {--_glow:rgba(59,130,246,.18);--_border:rgba(59,130,246,.55);--_shadow:rgba(59,130,246,.5)}
+  .card[data-icon="data"]      {--_glow:rgba(139,92,246,.18);--_border:rgba(139,92,246,.55);--_shadow:rgba(139,92,246,.5)}
+  .card[data-icon="tagihan"]   {--_glow:rgba(249,115,22,.18);--_border:rgba(249,115,22,.55);--_shadow:rgba(249,115,22,.5)}
+  .card[data-icon="game"]      {--_glow:rgba(236,72,153,.18);--_border:rgba(236,72,153,.55);--_shadow:rgba(236,72,153,.5)}
+  .card[data-icon="edit"]      {--_glow:rgba(6,182,212,.18);--_border:rgba(6,182,212,.55);--_shadow:rgba(6,182,212,.5)}
+  .card[data-icon="saldo"]     {--_glow:rgba(20,184,166,.18);--_border:rgba(20,184,166,.55);--_shadow:rgba(20,184,166,.5)}
+  .card[data-icon="tarik"]     {--_glow:rgba(239,68,68,.18);--_border:rgba(239,68,68,.55);--_shadow:rgba(239,68,68,.5)}
+  .card[data-icon="market"]    {--_glow:rgba(255,87,34,.18);--_border:rgba(255,87,34,.55);--_shadow:rgba(255,87,34,.5)}
+  .card[data-icon="transfer"]  {--_glow:rgba(99,102,241,.18);--_border:rgba(99,102,241,.55);--_shadow:rgba(99,102,241,.5)}
+  .card[data-icon="kapal"]     {--_glow:rgba(14,165,233,.18);--_border:rgba(14,165,233,.55);--_shadow:rgba(14,165,233,.5)}
+  .card[data-icon="pesawat"]   {--_glow:rgba(129,140,248,.18);--_border:rgba(129,140,248,.55);--_shadow:rgba(129,140,248,.5)}
+  .card[data-icon="bpjs"]      {--_glow:rgba(16,185,129,.18);--_border:rgba(16,185,129,.55);--_shadow:rgba(16,185,129,.5)}
+  .card[data-icon="cicilan"]   {--_glow:rgba(245,158,11,.18);--_border:rgba(245,158,11,.55);--_shadow:rgba(245,158,11,.5)}
+  .card[data-icon="usdt"]      {--_glow:rgba(34,197,94,.18);--_border:rgba(34,197,94,.55);--_shadow:rgba(34,197,94,.5)}
+  .card[data-icon="share"]     {--_glow:rgba(168,85,247,.18);--_border:rgba(168,85,247,.55);--_shadow:rgba(168,85,247,.5)}
+
+  /* === RESPONSIVE CARD === */
+  @media (max-width:360px){
+    #list{gap:9px}
+    .card{padding:14px 8px;border-radius:15px}
+    .card .card-icon{font-size:22px;margin-bottom:8px}
+    .card .card-title{font-size:12px;margin-bottom:3px}
+    .card .card-desc{font-size:10px}
+  }
+  @media (min-width:640px){
+    body{max-width:600px;padding:28px 20px 60px}
+    #list{gap:14px;margin-bottom:28px}
+    .card{padding:24px 14px;border-radius:20px}
+    .card .card-icon{font-size:31px;margin-bottom:13px}
+    .card .card-title{font-size:15px;margin-bottom:5px}
+    .card .card-desc{font-size:12px}
+  }
+
+  /* === FOOTER === */
+  .footer{
+    text-align:center;
+    color:var(--muted-2);
+    font-size:11.5px;
+    margin-top:14px;
+    letter-spacing:.3px;
+    line-height:1.6;
+    font-weight:500;
+    position:relative;
+    z-index:1;
+  }
+  .footer .heart{
+    color:#ec4899;
+    animation:heartbeat 1.5s ease-in-out infinite;
+    display:inline-block;
+  }
+  @keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    25%{transform:scale(1.15)}
+    50%{transform:scale(1)}
+    75%{transform:scale(1.15)}
+  }
+
+  /* === MODAL === */
+  .modal{
+    display:none;
+    position:fixed;inset:0;
+    background:var(--overlay);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    animation:fadeIn .2s ease;
+  }
+  .modal.active{display:flex}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+  .modal-box{
+    background:linear-gradient(160deg,#171e35,#0d1220);
+    border:1px solid rgba(124,58,237,.25);
+    border-radius:22px;
+    padding:22px 20px 20px;
+    max-width:460px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    box-shadow:0 30px 80px -25px rgba(0,0,0,.9),
+               inset 0 1px 0 rgba(255,255,255,.06);
+    animation:slideUp .32s cubic-bezier(.22,1,.36,1);
+    -webkit-overflow-scrolling:touch;
+  }
+  @keyframes slideUp{
+    from{transform:translateY(30px) scale(.96);opacity:0}
+    to{transform:translateY(0) scale(1);opacity:1}
+  }
+
+  .modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+    gap:10px;
+  }
+  .modal-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:17px;
+    font-weight:700;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    line-height:1.3;
+    min-width:0;
+    flex:1;
+  }
+  .modal-title i{font-size:19px;flex-shrink:0}
+  .modal-title span{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .close-btn{
+    background:rgba(5,7,15,.6);
+    border:1px solid var(--border-soft);
+    color:var(--muted);
+    font-size:14px;
+    cursor:pointer;
+    padding:0;
+    line-height:1;
+    border-radius:10px;
+    transition:all .2s;
+    flex-shrink:0;
+    width:34px;height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+  }
+  .close-btn:hover{
+    color:#fff;
+    background:var(--danger);
+    border-color:var(--danger);
+    transform:rotate(90deg);
+  }
+  .close-btn:active{transform:scale(.9) rotate(90deg)}
+
+  .modal-sub{
+    color:var(--muted);
+    font-size:12.5px;
+    margin-bottom:16px;
+    line-height:1.45;
+  }
+
+  /* === OPTION LIST === */
+  .option-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .option-btn{
+    background:rgba(5,7,15,.55);
+    border:1.5px solid var(--border-soft);
+    border-radius:14px;
+    padding:13px 14px;
+    cursor:pointer;
+    color:var(--text);
+    font-family:inherit;
+    text-align:left;
+    transition:all .22s cubic-bezier(.22,1,.36,1);
+    display:flex;
+    align-items:center;
+    gap:13px;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .option-btn::before{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(90deg,var(--opt-bg-strong,transparent),transparent);
+    opacity:0;
+    transition:opacity .25s ease;
+    pointer-events:none;
+    z-index:-1;
+  }
+  .option-btn:hover::before{opacity:1}
+  .option-btn:active{transform:scale(.98)}
+  .option-btn .opt-icon-wrap{
+    width:42px;height:42px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    background:var(--opt-bg,rgba(124,58,237,.15));
+    border:1px solid var(--opt-border,rgba(124,58,237,.25));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .option-btn:hover .opt-icon-wrap{
+    transform:scale(1.08) rotate(-4deg);
+  }
+  .option-btn .opt-icon-wrap i{
+    font-size:17px;
+    color:var(--opt-color,#7c3aed);
+    filter:drop-shadow(0 1px 3px rgba(0,0,0,.4));
+  }
+  .option-btn .opt-text{flex:1;min-width:0}
+  .option-btn .opt-title{
+    font-weight:700;
+    font-size:13.5px;
+    margin-bottom:2px;
+    color:#fff;
+    line-height:1.25;
+    letter-spacing:-.2px;
+  }
+  .option-btn .opt-desc{
+    font-size:11.5px;
+    color:var(--muted);
+    font-weight:500;
+    line-height:1.3;
+  }
+  .option-btn .opt-arrow{
+    color:var(--muted-2);
+    font-size:12px;
+    flex-shrink:0;
+    transition:all .2s;
+    opacity:.6;
+  }
+  .option-btn:hover{
+    background:rgba(20,26,45,.85);
+    border-color:var(--opt-border,rgba(167,139,250,.5));
+    box-shadow:0 10px 25px -12px var(--opt-bg-strong,rgba(124,58,237,.5));
+    transform:translateY(-2px);
+  }
+  .option-btn:hover .opt-arrow{
+    transform:translateX(4px);
+    opacity:1;
+    color:var(--opt-color,#a78bfa);
+  }
+
+  /* === SHARE === */
+  #shareUrl{
+    background:rgba(5,7,15,.65);
+    padding:12px 14px;
+    border-radius:11px;
+    margin-bottom:18px;
+    font-size:11.5px;
+    color:var(--muted);
+    word-break:break-all;
+    border:1px solid var(--border-soft);
+    font-family:ui-monospace,'SF Mono',Monaco,monospace;
+    letter-spacing:.2px;
+    line-height:1.4;
+    position:relative;
+  }
+  #shareUrl::before{
+    content:'🔗';
+    position:absolute;
+    left:-1px;top:-1px;
+    font-size:9px;
+    opacity:.5;
+    display:none;
+  }
+
+  #shareGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+  }
+  @media (max-width:340px){
+    #shareGrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  }
+
+  .share-btn{
+    background:rgba(5,7,15,.55);
+    border:1.5px solid var(--border-soft);
+    border-radius:13px;
+    padding:14px 6px 12px;
+    cursor:pointer;
+    color:var(--text);
+    font-family:inherit;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:7px;
+    transition:all .25s cubic-bezier(.22,1,.36,1);
+    overflow:hidden;
+    position:relative;
+    isolation:isolate;
+  }
+  .share-btn::before{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(160deg,var(--share-glow,rgba(124,58,237,.15)),transparent 70%);
+    opacity:0;
+    transition:opacity .25s ease;
+    pointer-events:none;
+    z-index:-1;
+  }
+  .share-btn:hover::before{opacity:1}
+  .share-btn:active{transform:scale(.94)}
+  .share-btn i{
+    font-size:20px;
+    line-height:1;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    filter:drop-shadow(0 2px 5px rgba(0,0,0,.4));
+  }
+  .share-btn:hover{
+    border-color:var(--share-border,rgba(167,139,250,.5));
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px -12px var(--share-glow,rgba(124,58,237,.6));
+  }
+  .share-btn:hover i{transform:scale(1.2)}
+  .share-btn span{
+    font-size:9.5px;
+    font-weight:700;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:100%;
+    color:var(--text-2);
+    letter-spacing:.1px;
+  }
+  @media (min-width:640px){
+    .share-btn i{font-size:22px}
+    .share-btn span{font-size:10.5px}
+    .share-btn{padding:15px 8px 13px}
+  }
+
+  /* Share brand colors */
+  .share-btn[data-share="whatsapp"]  {--share-border:rgba(37,211,102,.55);--share-glow:rgba(37,211,102,.5)}
+  .share-btn[data-share="telegram"]  {--share-border:rgba(34,158,217,.55);--share-glow:rgba(34,158,217,.5)}
+  .share-btn[data-share="facebook"]  {--share-border:rgba(24,119,242,.55);--share-glow:rgba(24,119,242,.5)}
+  .share-btn[data-share="twitter"]   {--share-border:rgba(255,255,255,.35);--share-glow:rgba(255,255,255,.2)}
+  .share-btn[data-share="instagram"] {--share-border:rgba(225,48,108,.55);--share-glow:rgba(225,48,108,.5)}
+  .share-btn[data-share="tiktok"]    {--share-border:rgba(254,44,85,.55);--share-glow:rgba(254,44,85,.5)}
+  .share-btn[data-share="line"]      {--share-border:rgba(0,195,0,.55);--share-glow:rgba(0,195,0,.5)}
+  .share-btn[data-share="copy"]      {--share-border:rgba(168,85,247,.55);--share-glow:rgba(168,85,247,.5)}
+
+  /* === TOAST === */
+  .toast{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%) translateY(24px);
+    background:linear-gradient(160deg,#1e293b,#0f172a);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    padding:13px 22px;
+    border-radius:14px;
+    font-size:13px;
+    font-weight:600;
+    box-shadow:0 20px 50px -15px rgba(0,0,0,.9),
+               inset 0 1px 0 rgba(255,255,255,.08);
+    z-index:10000;
+    opacity:0;
+    pointer-events:none;
+    transition:all .35s cubic-bezier(.22,1,.36,1);
+    max-width:calc(100vw - 32px);
+    text-align:center;
+    letter-spacing:.1px;
+  }
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  /* === SCROLLBAR === */
+  .modal-box::-webkit-scrollbar{width:6px}
+  .modal-box::-webkit-scrollbar-track{background:transparent}
+  .modal-box::-webkit-scrollbar-thumb{
+    background:var(--border-strong);
+    border-radius:3px;
+  }
+  .modal-box::-webkit-scrollbar-thumb:hover{
+    background:var(--accent-2);
+  }
+
+  /* === REDUCED MOTION === */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="grid-overlay"></div>
+
+  <div class="header">
+    <div class="logo-badge">
+      <i class="fas fa-bolt"></i>
+    </div>
+    <h1>Nelsen Store</h1>
+    <p><span class="status-dot"></span>Layanan Digital Tercepat & Terpercaya</p>
+  </div>
+
+  <div class="section-title">
+    <i class="fas fa-th-large"></i> Pilih Layanan
+  </div>
+
+  <div id="list"></div>
+
+  <div class="footer">
+    &copy; 2025 Nelsen Store · Dibuat dengan <span class="heart">♥</span>
+  </div>
+
+  <div id="optionModal" class="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="optModalTitle"><i class="fas fa-list"></i><span>Pilih</span></div>
+        <button class="close-btn" type="button" data-close="option" aria-label="Tutup">✕</button>
+      </div>
+      <div class="modal-sub" id="optModalSub">Pilih salah satu:</div>
+      <div class="option-list" id="optionList"></div>
+    </div>
+  </div>
+
+  <div id="shareModal" class="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title"><i class="fas fa-share-nodes" style="color:#a855f7"></i><span>Bagikan</span></div>
+        <button class="close-btn" type="button" data-close="share" aria-label="Tutup">✕</button>
+      </div>
+      <div id="shareUrl"></div>
+      <div id="shareGrid"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  const WA = '6285328736706';
+
+  function safeOpen(url) {
+    try {
+      const w = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!w) window.location.href = url;
+    } catch (err) {
+      console.warn('Gagal membuka URL:', err);
+    }
+  }
+
+  function $(id) { return document.getElementById(id); }
+
+  // ============================================================
+  // ============ DAFTAR LAYANAN ============
+  // ============================================================
+  const LAYANAN = [
+    { nama:'Voucher Listrik', desc:'Token PLN', icon:'fa-bolt-lightning', color:'#f59e0b', key:'voucher',
+      pesan:`Halo *Nelsen Store*! ⚡\n\nSaya ingin order *Voucher Listrik / Token PLN*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Pulsa', desc:'Semua operator', icon:'fa-sim-card', color:'#3b82f6', key:'pulsa',
+      pesan:`Halo *Nelsen Store*! 📱\n\nSaya ingin order *Pulsa*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Paket Data', desc:'Kuota internet', icon:'fa-signal', color:'#8b5cf6', key:'data',
+      pesan:`Halo *Nelsen Store*! 📶\n\nSaya ingin order *Paket Data / Kuota Internet*.\n\nMohon info paket & cara order selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Tagihan Listrik', desc:'Bayar PLN', icon:'fa-file-invoice-dollar', color:'#f97316', key:'tagihan',
+      pesan:`Halo *Nelsen Store*! 🧾\n\nSaya ingin order *Bayar Tagihan Listrik PLN*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Top Up Game', desc:'FF, ML, PUBG', icon:'fa-gamepad', color:'#ec4899', key:'game',
+      pesan:`Halo *Nelsen Store*! 🎮\n\nSaya ingin order *Top Up Game*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'Free Fire', desc:'Diamond FF', icon:'fa-fire-flame-curved', color:'#ec4899',
+          pesan:`Halo *Nelsen Store*! 🔥\n\nSaya ingin order *Top Up Free Fire*.\n\nMohon info nominal diamond & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Mobile Legends', desc:'Diamond ML', icon:'fa-shield-halved', color:'#3b82f6',
+          pesan:`Halo *Nelsen Store*! 🛡️\n\nSaya ingin order *Top Up Mobile Legends*.\n\nMohon info nominal diamond & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'PUBG Mobile', desc:'UC PUBG', icon:'fa-crosshairs', color:'#f59e0b',
+          pesan:`Halo *Nelsen Store*! 🎯\n\nSaya ingin order *Top Up PUBG Mobile*.\n\nMohon info nominal UC & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Edit Foto', desc:'Jasa edit', icon:'fa-wand-magic-sparkles', color:'#06b6d4', key:'edit',
+      pesan:`Halo *Nelsen Store*! 🎨\n\nSaya ingin order *Jasa Edit Foto*.\n\nMohon info jenis edit & harga selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'Retouch Wajah', desc:'Perbaikan foto wajah', icon:'fa-face-smile-beam', color:'#06b6d4',
+          pesan:`Halo *Nelsen Store*! 😊\n\nSaya ingin order *Jasa Edit Foto — Retouch Wajah*.\n\nMohon info harga & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Ganti Background', desc:'Ganti latar foto', icon:'fa-image', color:'#06b6d4',
+          pesan:`Halo *Nelsen Store*! 🖼️\n\nSaya ingin order *Jasa Edit Foto — Ganti Background*.\n\nMohon info harga & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Manipulasi Foto', desc:'Gabung/ubah foto', icon:'fa-layer-group', color:'#06b6d4',
+          pesan:`Halo *Nelsen Store*! 🎨\n\nSaya ingin order *Jasa Edit Foto — Manipulasi Foto*.\n\nMohon info harga & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Hapus Objek', desc:'Hilangkan objek', icon:'fa-eraser', color:'#06b6d4',
+          pesan:`Halo *Nelsen Store*! 🧽\n\nSaya ingin order *Jasa Edit Foto — Hapus Objek*.\n\nMohon info harga & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Color Grading', desc:'Koreksi warna foto', icon:'fa-palette', color:'#06b6d4',
+          pesan:`Halo *Nelsen Store*! 🎨\n\nSaya ingin order *Jasa Edit Foto — Color Grading*.\n\nMohon info harga & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Isi Saldo', desc:'DANA, OVO', icon:'fa-money-bill-wave', color:'#14b8a6', key:'saldo',
+      pesan:`Halo *Nelsen Store*! 💰\n\nSaya ingin order *Isi Saldo / Wallet*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'DANA', desc:'Isi saldo DANA', icon:'fa-wallet', color:'#118eea',
+          pesan:`Halo *Nelsen Store*! 💙\n\nSaya ingin order *Isi Saldo DANA*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'OVO', desc:'Isi saldo OVO', icon:'fa-circle-o', color:'#4c3494',
+          pesan:`Halo *Nelsen Store*! 💜\n\nSaya ingin order *Isi Saldo OVO*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'GoPay', desc:'Isi saldo GoPay', icon:'fa-motorcycle', color:'#00aed6',
+          pesan:`Halo *Nelsen Store*! 🏍️\n\nSaya ingin order *Isi Saldo GoPay*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'ShopeePay', desc:'Isi saldo ShopeePay', icon:'fa-bag-shopping', color:'#ee4d2d',
+          pesan:`Halo *Nelsen Store*! 🛍️\n\nSaya ingin order *Isi Saldo ShopeePay*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Google Play', desc:'Saldo Google Play', icon:'fa-google-play', color:'#34a853',
+          pesan:`Halo *Nelsen Store*! ▶️\n\nSaya ingin order *Isi Saldo Google Play*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'LinkAja', desc:'Isi saldo LinkAja', icon:'fa-link', color:'#e82529',
+          pesan:`Halo *Nelsen Store*! 🔗\n\nSaya ingin order *Isi Saldo LinkAja*.\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Tarik Tunai', desc:'DANA → Tunai', icon:'fa-hand-holding-dollar', color:'#ef4444', key:'tarik',
+      pesan:`Halo *Nelsen Store*! 💸\n\nSaya ingin order *Tarik Tunai* (Transfer DANA → Uang Tunai).\n\nMohon info nominal & cara order selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Marketplace', desc:'Shopee, Tokped', icon:'fa-cart-shopping', color:'#ff5722', key:'market',
+      pesan:`Halo *Nelsen Store*! 🛒\n\nSaya ingin order *Bayar Marketplace*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'Shopee', desc:'Bayar pesanan Shopee', icon:'fa-bag-shopping', color:'#ee4d2d',
+          pesan:`Halo *Nelsen Store*! 🛍️\n\nSaya ingin order *Bayar Marketplace Shopee*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Tokopedia', desc:'Bayar pesanan Tokopedia', icon:'fa-store', color:'#42b549',
+          pesan:`Halo *Nelsen Store*! 🏪\n\nSaya ingin order *Bayar Marketplace Tokopedia*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'TikTok Shop', desc:'Bayar pesanan TikTok', icon:'fa-music', color:'#fe2c55',
+          pesan:`Halo *Nelsen Store*! 🎵\n\nSaya ingin order *Bayar Marketplace TikTok Shop*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Lazada', desc:'Bayar pesanan Lazada', icon:'fa-cart-plus', color:'#0f146d',
+          pesan:`Halo *Nelsen Store*! 🛒\n\nSaya ingin order *Bayar Marketplace Lazada*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Blibli', desc:'Bayar pesanan Blibli', icon:'fa-basket-shopping', color:'#0095da',
+          pesan:`Halo *Nelsen Store*! 🧺\n\nSaya ingin order *Bayar Marketplace Blibli*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Transfer Uang', desc:'Bank & e-Wallet', icon:'fa-money-bill-transfer', color:'#6366f1', key:'transfer',
+      pesan:`Halo *Nelsen Store*! ✈️\n\nSaya ingin order *Transfer Uang*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'Transfer Bank', desc:'BCA, BRI, BNI, Mandiri, dll', icon:'fa-building-columns', color:'#6366f1',
+          pesan:`Halo *Nelsen Store*! 🏦\n\nSaya ingin order *Transfer Uang ke Bank*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Transfer E-Wallet', desc:'DANA, OVO, GoPay, dll', icon:'fa-wallet', color:'#14b8a6',
+          pesan:`Halo *Nelsen Store*! 👛\n\nSaya ingin order *Transfer Uang ke E-Wallet*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Tiket Kapal', desc:'Pelni, Dharma', icon:'fa-ship', color:'#0ea5e9', key:'kapal',
+      pesan:`Halo *Nelsen Store*! 🚢\n\nSaya ingin order *Tiket Kapal Laut*.\n\nMohon info rute, jadwal & harga selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Tiket Pesawat', desc:'Semua maskapai', icon:'fa-plane-up', color:'#818cf8', key:'pesawat',
+      pesan:`Halo *Nelsen Store*! ✈️\n\nSaya ingin order *Tiket Pesawat*.\n\nMohon info rute, jadwal & harga selanjutnya ya. Terima kasih 🙏` },
+    { nama:'Bayar BPJS', desc:'Kes & Naker', icon:'fa-notes-medical', color:'#10b981', key:'bpjs',
+      pesan:`Halo *Nelsen Store*! 🏥\n\nSaya ingin order *Bayar BPJS*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'BPJS Kesehatan', desc:'Iuran BPJS Kesehatan', icon:'fa-heart-pulse', color:'#10b981',
+          pesan:`Halo *Nelsen Store*! 💓\n\nSaya ingin order *Bayar BPJS Kesehatan*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'BPJS Ketenagakerjaan', desc:'Iuran BPJS Ketenagakerjaan', icon:'fa-helmet-safety', color:'#f59e0b',
+          pesan:`Halo *Nelsen Store*! ⛑️\n\nSaya ingin order *Bayar BPJS Ketenagakerjaan*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Bayar Cicilan', desc:'Motor, Mobil', icon:'fa-credit-card', color:'#f59e0b', key:'cicilan',
+      pesan:`Halo *Nelsen Store*! 📆\n\nSaya ingin order *Bayar Cicilan*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'Cicilan Motor', desc:'Angsuran motor', icon:'fa-motorcycle', color:'#f59e0b',
+          pesan:`Halo *Nelsen Store*! 🏍️\n\nSaya ingin order *Bayar Cicilan Motor*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Cicilan Mobil', desc:'Angsuran mobil', icon:'fa-car-side', color:'#ef4444',
+          pesan:`Halo *Nelsen Store*! 🚗\n\nSaya ingin order *Bayar Cicilan Mobil*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Cicilan Rumah/KPR', desc:'Angsuran rumah / KPR', icon:'fa-house-chimney', color:'#10b981',
+          pesan:`Halo *Nelsen Store*! 🏠\n\nSaya ingin order *Bayar Cicilan Rumah / KPR*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Cicilan Elektronik', desc:'Angsuran elektronik', icon:'fa-tv', color:'#8b5cf6',
+          pesan:`Halo *Nelsen Store*! 📺\n\nSaya ingin order *Bayar Cicilan Elektronik*.\n\nMohon info biaya admin & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Jual Beli USDT', desc:'Dollar Crypto', icon:'fa-bitcoin-sign', color:'#22c55e', key:'usdt',
+      pesan:`Halo *Nelsen Store*! 💎\n\nSaya ingin order *Jual / Beli USDT*.\n\nMohon info kurs & cara order selanjutnya ya. Terima kasih 🙏`,
+      options:[
+        { nama:'Beli USDT', desc:'Beli Dollar Crypto', icon:'fa-arrow-down-long', color:'#22c55e',
+          pesan:`Halo *Nelsen Store*! ⬇️\n\nSaya ingin order *BELI USDT*.\n\nMohon info kurs & cara order selanjutnya ya. Terima kasih 🙏` },
+        { nama:'Jual USDT', desc:'Jual Dollar Crypto', icon:'fa-arrow-up-long', color:'#ef4444',
+          pesan:`Halo *Nelsen Store*! ⬆️\n\nSaya ingin order *JUAL USDT*.\n\nMohon info kurs & cara order selanjutnya ya. Terima kasih 🙏` }
+      ]},
+    { nama:'Bagikan', desc:'Share medsos', icon:'fa-share-nodes', color:'#a855f7', key:'share', share:true }
+  ];
+
+  const SHARE_PLATFORMS = [
+    { id:'whatsapp',  nama:'WhatsApp',   icon:'fa-whatsapp',    color:'#25d366' },
+    { id:'telegram',  nama:'Telegram',   icon:'fa-telegram',    color:'#229ed9' },
+    { id:'facebook',  nama:'Facebook',   icon:'fa-facebook-f',  color:'#1877f2' },
+    { id:'twitter',   nama:'X',          icon:'fa-x-twitter',   color:'#f1f5ff' },
+    { id:'instagram', nama:'Instagram',  icon:'fa-instagram',   color:'#e1306c' },
+    { id:'tiktok',    nama:'TikTok',     icon:'fa-tiktok',      color:'#fe2c55' },
+    { id:'line',      nama:'LINE',       icon:'fa-line',        color:'#00c300' },
+    { id:'copy',      nama:'Salin Link', icon:'fa-copy',        color:'#a78bfa' }
+  ];
+
+  function renderCards() {
+    const list = $('list');
+    if (!list) return;
+    list.innerHTML = '';
+
+    LAYANAN.forEach(function(item) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('data-icon', item.key);
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', item.nama);
+
+      const iconEl = document.createElement('i');
+      iconEl.className = 'fas ' + item.icon + ' card-icon';
+      iconEl.style.color = item.color;
+      iconEl.style.textShadow = '0 0 20px ' + hexToRgba(item.color, 0.5);
+      card.appendChild(iconEl);
+
+      const titleEl = document.createElement('div');
+      titleEl.className = 'card-title';
+      titleEl.textContent = item.nama;
+      card.appendChild(titleEl);
+
+      const descEl = document.createElement('div');
+      descEl.className = 'card-desc';
+      descEl.textContent = item.desc;
+      card.appendChild(descEl);
+
+      function handleClick() {
+        if (item.share) {
+          openShare();
+        } else if (item.options && item.options.length > 0) {
+          openOption(item);
+        } else {
+          pesan(item.pesan);
+        }
+      }
+
+      card.addEventListener('click', handleClick);
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleClick();
+        }
+      });
+
+      list.appendChild(card);
+    });
+  }
+
+  function pesan(text) {
+    if (!text) return;
+    const url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text);
+    safeOpen(url);
+  }
+
+  function openOption(parentItem) {
+    const modal = $('optionModal');
+    const title = $('optModalTitle');
+    const sub = $('optModalSub');
+    const optList = $('optionList');
+    if (!modal || !title || !sub || !optList) return;
+
+    title.innerHTML = '';
+    const titleIcon = document.createElement('i');
+    titleIcon.className = 'fas ' + parentItem.icon;
+    titleIcon.style.color = parentItem.color;
+    titleIcon.style.textShadow = '0 0 15px ' + hexToRgba(parentItem.color, 0.5);
+    const titleSpan = document.createElement('span');
+    titleSpan.textContent = parentItem.nama;
+    title.appendChild(titleIcon);
+    title.appendChild(titleSpan);
+
+    sub.textContent = 'Pilih salah satu opsi di bawah ini:';
+    optList.innerHTML = '';
+
+    parentItem.options.forEach(function(opt) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'option-btn';
+
+      const iconWrap = document.createElement('div');
+      iconWrap.className = 'opt-icon-wrap';
+      iconWrap.style.setProperty('--opt-color', opt.color);
+      iconWrap.style.setProperty('--opt-bg', hexToRgba(opt.color, 0.15));
+      iconWrap.style.setProperty('--opt-border', hexToRgba(opt.color, 0.3));
+      iconWrap.style.setProperty('--opt-bg-strong', hexToRgba(opt.color, 0.25));
+
+      const oIcon = document.createElement('i');
+      oIcon.className = 'fas ' + opt.icon;
+      oIcon.style.textShadow = '0 0 10px ' + hexToRgba(opt.color, 0.6);
+      iconWrap.appendChild(oIcon);
+      btn.appendChild(iconWrap);
+
+      btn.style.setProperty('--opt-color', opt.color);
+      btn.style.setProperty('--opt-border', hexToRgba(opt.color, 0.55));
+      btn.style.setProperty('--opt-bg-strong', hexToRgba(opt.color, 0.5));
+
+      const textBox = document.createElement('div');
+      textBox.className = 'opt-text';
+      const oTitle = document.createElement('div');
+      oTitle.className = 'opt-title';
+      oTitle.textContent = opt.nama;
+      const oDesc = document.createElement('div');
+      oDesc.className = 'opt-desc';
+      oDesc.textContent = opt.desc;
+      textBox.appendChild(oTitle);
+      textBox.appendChild(oDesc);
+      btn.appendChild(textBox);
+
+      const arrow = document.createElement('i');
+      arrow.className = 'fas fa-chevron-right opt-arrow';
+      btn.appendChild(arrow);
+
+      btn.addEventListener('click', function() {
+        closeOption();
+        setTimeout(function() { pesan(opt.pesan); }, 180);
+      });
+
+      optList.appendChild(btn);
+    });
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOption() {
+    const modal = $('optionModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function openShare() {
+    const modal = $('shareModal');
+    const urlBox = $('shareUrl');
+    const grid = $('shareGrid');
+    if (!modal || !urlBox || !grid) return;
+
+    var url = '';
+    try { url = window.location.href; } catch(e) { url = ''; }
+    var text = 'Cek Nelsen Store! Layanan digital lengkap: pulsa, paket data, voucher listrik, top up game, tiket, BPJS, dan banyak lagi. Proses cepat & terpercaya!';
+
+    urlBox.textContent = url;
+    grid.innerHTML = '';
+
+    SHARE_PLATFORMS.forEach(function(p) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'share-btn';
+      btn.setAttribute('data-share', p.id);
+
+      const icon = document.createElement('i');
+      icon.className = 'fab ' + p.icon;
+      icon.style.color = p.color;
+      icon.style.textShadow = '0 0 12px ' + hexToRgba(p.color, 0.6);
+      btn.appendChild(icon);
+
+      const label = document.createElement('span');
+      label.textContent = p.nama;
+      btn.appendChild(label);
+
+      btn.addEventListener('click', function() {
+        shareTo(p.id, url, text);
+      });
+
+      grid.appendChild(btn);
+    });
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeShare() {
+    const modal = $('shareModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function shareTo(platform, url, text) {
+    if (!url || !text) return;
+    const enc = encodeURIComponent;
+    const full = text + '\n\n' + url;
+    let shareUrl = '';
+
+    try {
+      switch (platform) {
+        case 'whatsapp':
+          shareUrl = 'https://wa.me/?text=' + enc(full);
+          break;
+        case 'telegram':
+          shareUrl = 'https://t.me/share/url?url=' + enc(url) + '&text=' + enc(text);
+          break;
+        case 'facebook':
+          shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(url);
+          break;
+        case 'twitter':
+          shareUrl = 'https://twitter.com/intent/tweet?url=' + enc(url) + '&text=' + enc(text);
+          break;
+        case 'instagram':
+          copyText(full);
+          showToast('Link disalin! Paste di bio/story Instagram 📷');
+          return;
+        case 'tiktok':
+          copyText(full);
+          showToast('Link disalin! Paste di bio/caption TikTok 🎵');
+          return;
+        case 'line':
+          shareUrl = 'https://social-plugins.line.me/lineit/share?url=' + enc(url) + '&text=' + enc(text);
+          break;
+        case 'copy':
+          copyText(full);
+          showToast('Link berhasil disalin! 🎉');
+          return;
+        default:
+          return;
+      }
+
+      if (shareUrl) safeOpen(shareUrl);
+    } catch (err) {
+      console.warn('Share error:', err);
+      showToast('Gagal membagikan. Coba lagi ya.');
+    }
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function() {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (!ok) console.warn('Fallback copy gagal');
+    } catch (err) {
+      console.warn('Copy error:', err);
+    }
+  }
+
+  var toastTimer = null;
+  function showToast(msg) {
+    const toast = $('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  function hexToRgba(hex, alpha) {
+    if (!hex) return 'rgba(124,58,237,' + alpha + ')';
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+      hex = hex.split('').map(function(c) { return c + c; }).join('');
+    }
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+  }
+
+  function bindEvents() {
+    document.querySelectorAll('[data-close]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const target = btn.getAttribute('data-close');
+        if (target === 'option') closeOption();
+        if (target === 'share') closeShare();
+      });
+    });
+
+    const optModal = $('optionModal');
+    if (optModal) {
+      optModal.addEventListener('click', function(e) {
+        if (e.target === optModal) closeOption();
+      });
+    }
+
+    const shareModal = $('shareModal');
+    if (shareModal) {
+      shareModal.addEventListener('click', function(e) {
+        if (e.target === shareModal) closeShare();
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeOption();
+        closeShare();
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      const optOpen = optModal && optModal.classList.contains('active');
+      const shareOpen = shareModal && shareModal.classList.contains('active');
+      if (!optOpen && !shareOpen) {
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  function init() {
+    try {
+      renderCards();
+      bindEvents();
+    } catch (err) {
+      console.error('Init error:', err);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  window.__nelsen = {
+    pesan: pesan,
+    openShare: openShare,
+    closeShare: closeShare,
+    closeOption: closeOption
+  };
+
+})();
+</script>
+</body>
+</html>
